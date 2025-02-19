@@ -1,0 +1,39 @@
+create database BdSql;
+drop database BdSql;
+use BdSql;
+
+create table empresa (
+id_empresa int primary key auto_increment,
+nome varchar(50), 
+cnpj char (14) unique not null,
+endereco char (25) 
+);
+select*from empresa;
+
+create table vaga (
+id_vaga int primary key auto_increment,
+titulo varchar (50) not  null,
+descricao varchar (250), 
+requisitos varchar (260),
+data_aber varchar (10) not null,
+data_fech varchar (10)
+);
+alter table vaga add constraint id_impresa foreign key(id_impresa) references empresa(id_empresa);
+select*from vaga;
+
+create table candidato (
+id_candidato int primary key auto_increment,
+nome varchar (50) not null,
+email varchar (100) unique not null,
+telefone char (13) unique
+);
+select*from candidato;
+
+create table candidatura (
+id_candidatura int primary key auto_increment,
+data_candi varchar (10) not null,
+status char (255) not null
+);
+alter table candidatura add constraint id_candidato foreign key(id_candidato) references candidato(id_candidato);
+alter table candidatura add constraint id_vaga foreign key(id_vaga) references vaga(id_vaga);
+select*from candidaturaaula
