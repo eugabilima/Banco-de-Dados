@@ -1,0 +1,108 @@
+create database BdSQL;
+drop database BdSQL;
+use BdSQL;
+
+create table funcionario(
+id_funcionario int primary key auto_increment,
+nome varchar(50),
+telefone char(15) unique not null,
+salario char(255) 
+);
+select*from funcionario;
+
+create table departamento(
+id_departamento int primary key auto_increment,
+nome_depart varchar (30),
+local_depart varchar (50),
+id_func varchar (50)
+);
+
+insert into departamento(id_funcionario)
+values(1);
+alter table departamento add cod_proj char(3);
+select * from departamento;
+
+
+create table projeto(
+id_projeto int primary key auto_increment,
+nome_projet varchar (30)
+);
+select*from projeto;
+
+create table cliente(
+id_cliente int primary key auto_increment,
+nome varchar (30),
+telefone char (20) unique not null,
+endereco varchar(255) not null,
+endereco char (255) not null
+);
+select*from cliente;
+
+insert into funcionario (nome, telefone, salario)
+values('Gabi','9586-4245','1.900'),
+('luiza','7548-2456','1.600'),
+('Nina','5484-6892','1.700'),
+('Geovana','1258-9543','1.800'),
+('Carol','5433-9876','1.000'),
+('Marcos','8466-4785','1.500'),
+('Italo','9696-4321','1.200'),
+('Lidia','9586-1234','1.600'),
+('Arthur','9876-4445','1.700'),
+('Lucas','9096-4245','1.300');
+select * from funcionario;
+
+insert into departamento (nome_depart, local_depart)
+values('Inovação','Sala de Criatividade'),
+('Marketing','Sala 10'),
+('Logística','jet 208');
+select * from departamento;
+
+insert into projeto (nome_projet)
+values('Lembra+'),
+('Calmind'),
+('MandaEcOmanda'),
+('Em Lei');
+select * from projeto;
+
+insert into cliente (nome, telefone, endereco)
+values('Lyra','9586-4845','BBB'),
+('Zephyra','7548-2456','AAA'),
+('Elara','5484-6892','CCC'),
+('Lunara','1258-9543','SSS'),
+('Seraphina','9586-4245','GGG'),
+('Valora','1234-5678','RRR'),
+('Astraea','98123-4675','UUU'),
+('Nyx','9586-4245','LLL'),
+('Elysia','98234-6578','MMM'),
+('Orion','94567-8901','EEE'),
+('Zephyr','7548-2456','PPP'),
+('Caspian','5484-6892','DDD'),
+('Phoenix','1258-9543','HHH'),
+('Rhys','97654-3210','WWW'),
+('Talon','92345-6789','OOO'),
+('Xander','96325-8745','III'),
+('Jaxon','99876-1234','VVV'),
+('Kael','91234-5678','NNN'),
+('Lucian','99876-5432','XXX'),
+('João',' 98765-4321','FFF');
+select * from cliente;
+
+
+create table departramento(
+    id_trab int primary key auto_increment
+);
+
+insert into departamento(id_funcionario)
+values(1);
+
+alter table departamento add cod_depart char(3);
+
+insert into departamento(id_funcionario, cod_pdepart)
+values(3, '22');
+
+select * from departamento;
+
+alter table departamento add id_funcionario int;
+
+alter table departamento add constraint fk_id_funcionario foreign key(id_departamento) references funcionario(id_funcionario);
+select * from departamento;
