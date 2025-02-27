@@ -1,0 +1,289 @@
+create database BdSQL;
+-- drop database BdSQL;
+use BdSQL;
+
+create table cliente (
+id_cliente int primary key auto_increment,
+nome_cliente varchar (70) not null,
+senha_cliente varchar (20),
+cpf char (20) unique not null,
+email_cliente varchar (70),
+endereco_cliente varchar (270) not null
+);
+select*from cliente;
+
+insert into cliente(nome_cliente, senha_cliente, endereco_cliente)
+values('fulana','912345678','BBB'),
+('fulano','934567890','AAA'),
+('Cicrana','996543210','CCC'),
+('Luano','998765432','SSS'),
+('Flavia','987654321','GGG'),
+('nelson','998236745','RRR'),
+('Igor','929348756','UUU'),
+('layza','975643021','LLL'),
+('Julia','963854270','MMM'),
+('Luana','987654321','EEE'),
+('Percy','912340987','PPP'),
+('Ana','998761234','DDD'),
+('Harry','12589543','HHH'),
+('Evylin','929876543','WWW'),
+('Taylor','936741820','OOO');
+
+create table pedidos( 
+id_pedidos int primary key auto_increment,
+nome varchar (100) unique not null,
+status varchar (80),
+numero_pedidos char (9) not null
+);
+
+insert into pedidos (nome, status, numero_pedidos) 
+values ('Camisa Polo Masculina', 'Disponível', '000000001'),
+('Calça Jeans Feminina', 'Esgotado', '000000002'),
+('Relógio Digital Unissex', 'Disponível', '000000003'),
+('Tênis Esportivo Masculino', 'Disponível', '000000004'),
+('Blusa de Frio Feminina', 'Esgotado', '000000005'),
+('Mochila de Couro Masculina', 'Disponível', '000000006'),
+('Óculos de Sol Polarizados', 'Esgotado', '000000007'),
+('Jaqueta de Couro Feminina', 'Disponível', '000000008'),
+('Camiseta Estampada Masculina', 'Esgotado', '000000009'),
+('Vestido Longo Feminino', 'Disponível', '000000010'),
+('Sapatênis Casual Masculino', 'Esgotado', '000000011'),
+('Carteira de Couro Masculina', 'Disponível', '000000012'),
+('Jaqueta Impermeável Feminina', 'Esgotado', '000000013'),
+('Boné de Aba Reta Unissex', 'Disponível', '000000014'),
+('Relógio Analógico Feminino', 'Esgotado', '000000015'),
+('Bota de Cano Curto Masculina', 'Disponível', '000000016'),
+('Calça Legging Feminina', 'Esgotado', '000000017'),
+('Blusa de Manga Longa Feminina', 'Disponível', '000000018'),
+('Tênis Casual Feminino', 'Esgotado', '000000019'),
+('Camiseta Básica Masculina', 'Disponível', '000000020'),
+('Mochila de Viagem Masculina', 'Esgotado', '000000021'),
+('Chapéu de Palha Feminino', 'Disponível', '000000022'),
+('Jaqueta Esportiva Masculina', 'Esgotado', '000000023'),
+('Sandália de Salto Feminina', 'Disponível', '000000024'),
+('Casaco de Lã Feminino', 'Esgotado', '000000025'),
+('Calça Pantalona Feminina', 'Disponível', '000000026'),
+('Blusa de Tricot Masculina', 'Esgotado', '000000027'),
+('Tênis Casual Masculino', 'Disponível', '000000028'),
+('Camiseta Polo Feminina', 'Esgotado', '000000029'),
+('Bota de Montanha Masculina', 'Disponível', '000000030'),
+('Pulseira de Couro Masculina', 'Esgotado', '000000031'),
+('Suéter de Lã Feminino', 'Disponível', '000000032'),
+('Tênis Running Feminino', 'Esgotado', '000000033'),
+('Bolsa de Mão Feminina', 'Disponível', '000000034'),
+('Jaqueta de Neve Masculina', 'Esgotado', '000000035'),
+('Camisa Social Masculina', 'Disponível', '000000036'),
+('Saia Midi Feminina', 'Esgotado', '000000037'),
+('Tênis Converse Feminino', 'Disponível', '000000038'),
+('Regata Esportiva Masculina', 'Esgotado', '000000039'),
+('Bolsa de Ombro Feminina', 'Disponível', '000000040'),
+('Tênis Slip On Masculino', 'Esgotado', '000000041'),
+('Blazer Masculino', 'Disponível', '000000042'),
+('Camiseta de Algodão Feminina', 'Esgotado', '000000043'),
+('Chinelo de Dedo Masculino', 'Disponível', '000000044'),
+('Bota de Couro Feminina', 'Esgotado', '000000045');
+select*from pedidos;
+
+UPDATE usuarios SET endereco = 'BBB' WHERE id = 1;
+UPDATE usuarios SET endereco = 'AAA' WHERE id = 2;
+UPDATE usuarios SET endereco = 'CCC' WHERE id = 3;
+UPDATE usuarios SET endereco = 'SSS' WHERE id = 4;
+UPDATE usuarios SET endereco = 'GGG' WHERE id = 5;
+UPDATE usuarios SET endereco = 'RRR' WHERE id = 6;
+UPDATE usuarios SET endereco = 'UUU' WHERE id = 7;
+UPDATE usuarios SET endereco = 'LLL' WHERE id = 8;
+UPDATE usuarios SET endereco = 'MMM' WHERE id = 9;
+UPDATE usuarios SET endereco = 'EEE' WHERE id = 10;
+UPDATE usuarios SET endereco = 'PPP' WHERE id = 11;
+UPDATE usuarios SET endereco = 'DDD' WHERE id = 12;
+UPDATE usuarios SET endereco = 'HHH' WHERE id = 13;
+UPDATE usuarios SET endereco = 'WWW' WHERE id = 14;
+UPDATE usuarios SET endereco = 'OOO' WHERE id = 15;
+
+UPDATE produtos 
+SET preco = 99.99
+WHERE nome_produto = 'Camisa Polo Masculina';
+
+UPDATE produtos
+SET preco = 79.99
+WHERE nome_produto = 'Calça Jeans Feminina';
+
+UPDATE produtos
+SET preco = 109.99
+WHERE nome_produto = 'Relógio Digital Unissex';
+
+UPDATE produtos
+SET preco = 159.99
+WHERE nome_produto = 'Tênis Esportivo Masculino';
+
+UPDATE produtos
+SET preco = 89.99
+WHERE nome_produto = 'Blusa de Frio Feminina';
+
+UPDATE produtos
+SET preco = 199.99
+WHERE nome_produto = 'Mochila de Couro Masculina';
+
+UPDATE produtos
+SET preco = 49.99
+WHERE nome_produto = 'Óculos de Sol Polarizados';
+
+UPDATE produtos
+SET preco = 249.99
+WHERE nome_produto = 'Jaqueta de Couro Feminina';
+
+UPDATE produtos
+SET preco = 59.99
+WHERE nome_produto = 'Camiseta Estampada Masculina';
+
+UPDATE produtos
+SET preco = 149.99
+WHERE nome_produto = 'Vestido Longo Feminino';
+
+UPDATE produtos
+SET preco = 89.99
+WHERE nome_produto = 'Sapatênis Casual Masculino';
+
+UPDATE produtos
+SET preco = 39.99
+WHERE nome_produto = 'Carteira de Couro Masculina';
+
+UPDATE produtos
+SET preco = 159.99
+WHERE nome_produto = 'Jaqueta Impermeável Feminina';
+
+UPDATE produtos
+SET preco = 29.99
+WHERE nome_produto = 'Boné de Aba Reta Unissex';
+
+UPDATE produtos
+SET preco = 99.99
+WHERE nome_produto = 'Relógio Analógico Feminino';
+
+UPDATE produtos
+SET preco = 179.99
+WHERE nome_produto = 'Bota de Cano Curto Masculina';
+
+UPDATE produtos
+SET preco = 79.99
+WHERE nome_produto = 'Calça Legging Feminina';
+
+UPDATE produtos
+SET preco = 129.99
+WHERE nome_produto = 'Blusa de Manga Longa Feminina';
+
+UPDATE produtos
+SET preco = 69.99
+WHERE nome_produto = 'Tênis Casual Feminino';
+
+UPDATE produtos
+SET preco = 119.99
+WHERE nome_produto = 'Camiseta Básica Masculina';
+
+UPDATE produtos
+SET preco = 139.99
+WHERE nome_produto = 'Mochila de Viagem Masculina';
+
+UPDATE produtos
+SET preco = 59.99
+WHERE nome_produto = 'Chapéu de Palha Feminino';
+
+UPDATE produtos
+SET preco = 169.99
+WHERE nome_produto = 'Jaqueta Esportiva Masculina';
+
+UPDATE produtos
+SET preco = 149.99
+WHERE nome_produto = 'Sandália de Salto Feminina';
+
+UPDATE produtos
+SET preco = 99.99
+WHERE nome_produto = 'Casaco de Lã Feminino';
+
+UPDATE produtos
+SET preco = 129.99
+WHERE nome_produto = 'Calça Pantalona Feminina';
+
+UPDATE produtos
+SET preco = 109.99
+WHERE nome_produto = 'Blusa de Tricot Masculina';
+
+UPDATE produtos
+SET preco = 89.99
+WHERE nome_produto = 'Tênis Casual Masculino';
+
+UPDATE produtos
+SET preco = 79.99
+WHERE nome_produto = 'Camiseta Polo Feminina';
+
+UPDATE produtos
+SET preco = 159.99
+WHERE nome_produto = 'Bota de Montanha Masculina';
+
+UPDATE produtos
+SET preco = 69.99
+WHERE nome_produto = 'Pulseira de Couro Masculina';
+
+UPDATE produtos
+SET preco = 119.99
+WHERE nome_produto = 'Suéter de Lã Feminino';
+
+UPDATE produtos
+SET preco = 99.99
+WHERE nome_produto = 'Tênis Running Feminino';
+
+UPDATE produtos
+SET preco = 149.99
+WHERE nome_produto = 'Bolsa de Mão Feminina';
+
+UPDATE produtos
+SET preco = 179.99
+WHERE nome_produto = 'Jaqueta de Neve Masculina';
+
+UPDATE produtos
+SET preco = 89.99
+WHERE nome_produto = 'Camisa Social Masculina';
+
+UPDATE produtos
+SET preco = 129.99
+WHERE nome_produto = 'Saia Midi Feminina';
+
+UPDATE produtos
+SET preco = 109.99
+WHERE nome_produto = 'Tênis Converse Feminino';
+
+UPDATE produtos
+SET preco = 119.99
+WHERE nome_produto = 'Regata Esportiva Masculina';
+
+UPDATE produtos
+SET preco = 89.99
+WHERE nome_produto = 'Bolsa de Ombro Feminina';
+
+UPDATE produtos
+SET preco = 129.99
+WHERE nome_produto = 'Tênis Slip On Masculino';
+
+UPDATE produtos
+SET preco = 159.99
+WHERE nome_produto = 'Blazer Masculino';
+
+UPDATE produtos
+SET preco = 99.99
+WHERE nome_produto = 'Camiseta de Algodão Feminina';
+
+UPDATE produtos
+SET preco = 49.99
+WHERE nome_produto = 'Chinelo de Dedo Masculino';
+
+UPDATE produtos
+SET preco = 199.99
+WHERE nome_produto = 'Bota de Couro Feminina';
+
+UPDATE produtos
+SET preco = 79.99
+WHERE nome_produto = 'Gorro de Lã Masculino';
+
+UPDATE produtos
+SET preco = 139.99
+WHERE nome_produto = 'Vestido Curto Feminino';
