@@ -1,0 +1,151 @@
+create database empresa; 
+use empresa; 
+
+create table cliente (
+id_clie int primary key auto_increment,
+nome varchar (100) not null,
+email varchar(100),
+telefone varchar (25),
+data_nascimento date
+);
+
+create table eventos (
+id_evento int primary key auto_increment,
+nome_enento varchar (100) not null,
+local_evento varchar(100),
+data_evento varchar (200),
+capacidade_pessoa varchar (300)
+);
+
+create table pagamento(
+id_paga int primary key auto_increment,
+id_cliente int,
+valor_pago decimal(10,2),
+data_paga date,
+satus_paga varchar (200) not null
+);
+
+create table inscricoes (
+id_inscricao int primary key auto_increment,
+id_cliente int,
+id_evento int,
+data_inscricao date,
+status_inscricao varchar(20)
+);
+
+alter table inscricao add constraint id_cliente foreign key(id_cliente)
+references clientes(id_cliente);
+alter table pagamento add constraint id_cliente foreign key(id_cliente)
+references clientes(id_cliente);
+alter table inscricao add constraint id_evento foreign key(id_evento)
+references evento(id_evento);
+
+select * from cliente;
+select * from eventos;
+select * from pagamento;
+select * from inscricoes;
+
+insert into cliente (nome_completo, data_nascimento, email, telefone) VALUES
+('João Silva', '1990-01-15', 'joao.silva@example.com', '11987654321'),
+('Maria Oliveira', '1985-05-20', 'maria.oliveira@example.com', '11987654322'),
+('Carlos Pereira', '1992-03-10', 'carlos.pereira@example.com', '11987654323'),
+('Ana Costa', '1988-07-25', 'ana.costa@example.com', '11987654324'),
+('Lucas Almeida', '1995-11-30', 'lucas.almeida@example.com', '11987654325'),
+('Fernanda Lima', '1993-02-14', 'fernanda.lima@example.com', '11987654326'),
+('Ricardo Santos', '1987-09-05', 'ricardo.santos@example.com', '11987654327'),
+('Juliana Rocha', '1991-12-12', 'juliana.rocha@example.com', '11987654328'),
+('Gabriel Martins', '1994-04-18', 'gabriel.martins@example.com', '11987654329'),
+('Patrícia Ferreira', '1986-06-22', 'patricia.ferreira@example.com', '11987654330'),
+('Eduardo Mendes', '1990-08-15', 'eduardo.mendes@example.com', '11987654331'),
+('Sofia Nascimento', '1992-10-10', 'sofia.nascimento@example.com', '11987654332'),
+('Rafael Gomes', '1989-03-03', 'rafael.gomes@example.com', '11987654333'),
+('Cláudia Dias', '1991-05-17', 'claudia.dias@example.com', '11987654334'),
+('Thiago Pires', '1984-11-11', 'thiago.pires@example.com', '11987654335');
+
+INSERT INTO Eventos (nome_evento, data_horario, local_evento, capacidade_maxima) VALUES
+('Tecnologia Na Area', '2023-09-15 09:00:00', 'Centro de Convenções', 200),
+('Materia terra', '2023-10-05 14:00:00', 'Auditório Municipal', 100),
+('Aniversário da Empresa', '2023-11-20 18:00:00', 'Espaço Gourmet', 150),
+('Vendendo e Lucrando', '2023-12-10 10:00:00', 'Teatro Municipal', 300),
+('Inovação do Mar', '2023-08-25 19:00:00', 'Sala de Eventos', 50);
+
+insert into Inscricoes (id_cliente, id_evento, data_inscricao, status_inscricao) values
+(1, 1, '2023-08-01', 'confirmada'),
+(2, 1, '2023-08-02', 'pendente'),
+(3, 2, '2023-08-03', 'confirmada'),
+(4, 2, '2023-08-04', 'cancelada'),
+(5, 3, '2023-08-05', 'confirmada'),
+(6, 3, '2023-08-06', 'pendente'),
+(7, 4, '2023-08-07', 'confirmada'),
+(8, 4, '2023-08-08', 'cancelada'),
+(9, 5, '2023-08-09', 'confirmada'),
+(10, 5, '2023-08-10', 'pendente'),
+(1, 2, '2023-08-11', 'confirmada'),
+(2, 3, '2023-08-12', 'pendente'),
+(3, 4, '2023-08-13', 'confirmada'),
+(4, 5, '2023-08-14', 'cancelada'),
+(5, 1, '2023-08-15', 'confirmada'),
+(6, 2, '2023-08-16', 'pendente'),
+(7, 3, '2023-08-17', 'confirmada'),
+(8, 4, '2023-08-18', 'cancelada'),
+(9, 5, '2023-08-19', 'confirmada'),
+(10, 1, '2023-08-20', 'pendente'),
+(1, 3, '2023-08-21', 'confirmada'),
+(2, 4, '2023-08-22', 'pendente'),
+(3, 5, '2023-08-23', 'confirmada'),
+(4, 1, '2023-08-24', 'cancelada'),
+(5, 2, '2023-08-25', 'confirmada'),
+(6, 3, '2023-08-26', 'pendente'),
+(7, 4, '2023-08-27', 'confirmada');
+
+select nome_completo
+from clientes
+order by nome_completo;
+
+select nome_evento, data_hora, local_evento
+from eventos
+order by data_hora;
+
+select e.nome_evento, COUNT(i.id_inscricao) as total_inscricoes
+from eventos e
+left join inscricoes i on e.id_evento = i.id_evento
+GROUP BY e.id_evento;
+
+select nome_completo
+from clientes
+where email is not null and email != '';
+
+select p.valor_pago, c.nome_completo, p.metodo_pagamento
+from pagamentos p
+join clientes c on p.id_cliente = c.id_cliente
+where p.metodo_pagamento = 'Pix'
+order by p.valor_pago DESC;
+
+select c.nome_completo, p.valor_pago
+from clientes c
+inner join pagamentos p on c.id_cliente = p.id_cliente
+where p.status_pagamento = 'pago';
+
+select c.nome_completo, e.nome_evento
+from clientes c
+left join inscricoes i on c.id_cliente = i.id_cliente
+left join eventos e on i.id_evento = e.id_evento;
+
+select e.nome_evento, c.nome_completo
+from eventos e
+right join inscricoes i on e.id_evento = i.id_evento
+right join clientes c on i.id_cliente = c.id_cliente;
+
+select c.nome_completo, e.nome_evento
+from clientes c
+cross join eventos e;
+
+select c.nome_completo
+from clientes c
+join pagamentos p on c.id_cliente = p.id_cliente
+where p.status_pagamento = 'pago'
+UNION
+select c.nome_completo
+from clientes c
+join inscricoes i on c.id_cliente = i.id_cliente
+where i.status_inscricao = 'confirmada';
