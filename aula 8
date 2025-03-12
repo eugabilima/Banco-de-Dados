@@ -1,0 +1,141 @@
+create database agendabd; -- criando o banco de dados
+use agendabd; -- apontando qual banco vou usar
+
+-- criando a tabela
+create table contato (
+id_cont int primary key auto_increment,
+nome varchar (100) not null,
+sobrenome varchar(100),
+data_nascimento date
+);
+
+create table telefone(
+id_tel int primary key auto_increment,
+numero varchar(20) not null,
+tipo varchar(20) not null
+);
+
+create table email(
+id_ema int primary key auto_increment,
+endereco varchar(100) not null,
+tipo varchar(20) not null
+);
+
+/*inserindo uma coluna da tabela*/
+alter table telefone add column id_cont int;
+alter table email add column fk_id_cont int;
+
+/*o comando Alter pode tanto alterar para inserir como excluir um id_cont*/
+alter table email drop column id_count;
+
+/*alterando a tabela telefone e add foreign key*/
+alter table telefone add constraint id_cont
+foreign key(id_cont) references contato (id_cont);
+
+/*alterando a table email e add foreign key*/
+alter table email add constraint fk_id_cont
+foreign key(fk_id_cont) references contato(id_cont);
+
+/*descrevendo todas as tabela*/
+show tables;
+
+/*escluir uma tabela*/
+drop database contato;
+/*excluir um banco de dados*/
+drop database agendabd;
+/*ira contar a quantidade de amils inserir dados na tabela banco de dado
+mais de um registro em apenas um insert into, vide exemplo*/
+select count(*) from contato;
+
+/*o comando insert into ira inserir dados na tabela banco de dados mais de um registro em apenas um insert into*/
+insert into contato(nome, sobrenome, data_nascimento)
+values ('Italo', 'Nunes', '1989-03-04'),
+('Gessica', 'Miron', '1991-05-22');
+-- delete - apaga um registr de tabela
+-- drop - apaga coluna ou um banco
+
+/*excluir um registro de uma tabela*/
+delete from contato where id_cont=2;
+
+/*listar o conteudo de uma tabela*/
+select * from contato;
+
+/*usando inner join nas tabelas*/
+select c.id_cont, c.Nome, c.Sobrenome, t.numero
+from contato c
+inner join telefone t on c.id_cont = t.id_tel;
+
+/*usando left join nas tabelas*/
+select c.id_cont, c.Nome, c.Sobrenome, t.numero
+from contato c
+right join telefone t on c.id_cont = t.id_tel;
+
+/*usando cross join nas tabelas*/
+select c.id_cont, c.Nome, c.Sobrenome, t.numero
+from contato c
+cross join telefone t on c.id_cont = t.id_tel;
+
+/* unindo tabelas, para isso e necessario chamar "atributos" que seja parecidos em ambas as tabelas*/
+select id_cont from contato
+union
+select id_ema from email;
+
+/*usando union nos join nas tabelas*/
+select c.id_cont, c.Nome, c.Sobrenome, t.numero
+from contato c
+cross join telefone t on c.id_cont = t.id_tel
+union
+select c.id_cont, c.Nome, c.Sobrenome, t.numero
+from contato c
+left join telefone t on c.id_cont = t.id_tel;
+
+/* usando allias para trazer nome diferente em um unico campo da tabela para uma unica consulta*/
+select sobrenome AS segundo_nome
+from contato;
+
+/*usando Allias para trazer mais de um nome diferente na tabela lembrando que ele seguira a ordem de solicitacao, buscando primeiro da esquerda para direita apenas para uma unica consulta*/
+select sobrenome as segundo_nome, nome as apelido
+from contato;
+
+/*usando Allias com a consiçao where para buscar um resultado especifico a partir do id na tabela. A regra antes da condião where de busca, segue a regra logo acima*/
+select  sobrenome as segundo_nome, nome as apelido
+from contato where id_count =1;
+
+create function fn_valor (a decimal(10,2), n int)
+returns int
+deterministic
+return a * b;
+
+select fn_valor (2, 5, 4) as resultado;
+
+create table salario(
+id int(11) primary key auto_increment,
+salario decimal (10,2));
+
+insert into salario (salario) values(100),
+(200),
+(300);
+
+select salario, fn_valor(salario, 4) as 'novo_salario'
+from salario where id = 3;
+
+drop function fn_valor2;
+
+show procedure status where Db= 'agendabd';
+
+drop procedure if exists verSalario;
+
+DELIMITER $$
+
+create procedure verSalarioNovo (varValor double)
+begin
+select concat('os salarios sao: ', salario) as novo_salario
+from salario
+where id = varValor;
+end $$
+
+CALL verSalarioNovo(2);
+select contat('os salarios sao: ', salario)
+as novos_salarios from salario where id = 2;
+
+drop procedure verSalario;
