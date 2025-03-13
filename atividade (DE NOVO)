@@ -76,7 +76,7 @@ insert into proprietario (nome, telefone) values
 ('Lucas Pereira', '99999-9999'),
 ('Patrícia Santos', '93123-4567'),
 ('Felipe Rocha', '96789-0123'),
-('Gabriela Alves', '98888-7766'),
+('Gabriela Silva', '98888-7766'),
 ('Eduardo Lima', '93456-7890'),
 ('Fernanda Costa', '91987-6543'),
 ('Ricardo Martins', '96543-2109'),
