@@ -1,7 +1,7 @@
 create database  atv;
 drop database atv;
 use atv;
-
+drop table pagamento;
 create table imoveis(
 id_imovel int primary key auto_increment,
 casa varchar (100) not null,
@@ -34,12 +34,10 @@ data_ter date
 create table pagamento(
 id_pagamento int primary key auto_increment,
 id_inquilino int,
+id_imovel int,
 valor_pago varchar(100) not null,
 status_pag varchar (200) not null
 );
-
-
-
 
 
 insert into imoveis (id_imovel, casa, local_casa, apartamento, local_apartamento, comercial, local_comercial) values
@@ -64,8 +62,6 @@ insert into imoveis (id_imovel, casa, local_casa, apartamento, local_apartamento
 (58, 'numero 19', 'Rua das Acácias Altas', 'Bloco 39, ap 403', 'Rua das Acácias', 'Lojas Americanas', 'Rua dos Jasmins'),
 (59, 'numero 20', 'Rua dos Girassóis', 'Bloco 40, ap 102', 'Avenida das Palmeiras', 'Supermercado Green', 'Rua das Mangueiras');
 
-
-
 select*from imoveis;
 
 insert into proprietario (nome, telefone) values
@@ -76,7 +72,7 @@ insert into proprietario (nome, telefone) values
 ('Lucas Pereira', '99999-9999'),
 ('Patrícia Santos', '93123-4567'),
 ('Felipe Rocha', '96789-0123'),
-('Gabriela Silva', '98888-7766'),
+('Gabriela Alves', '98888-7766'),
 ('Eduardo Lima', '93456-7890'),
 ('Fernanda Costa', '91987-6543'),
 ('Ricardo Martins', '96543-2109'),
@@ -114,7 +110,6 @@ insert into inquilino (id_imovel, cliente, telefone) values
 (58, 'Fernando Pereira', '96123-8765'),
 (59, 'Isabela Costa', '95012-3456');
 
-
 select*from inquilino;
 
 insert into contrato (preco_casa, preco_apartamento, preco_comercial, data_ini, data_ter) values
@@ -141,4 +136,27 @@ insert into contrato (preco_casa, preco_apartamento, preco_comercial, data_ini, 
 
 select*from contrato;
 
-insert into pagamento (valor_pago, status_pag) values
+insert into pagamento (id_inquilino, id_imovel, valor_pago, status_pag) values
+(30, 40, 1200.00, 'Pago'),
+(31, 41, 1350.00, 'Pendente'),
+(32, 42, 1100.00, 'Pago'),
+(33, 43, 1400.00, 'Pago'),
+(34, 44, 1250.00, 'Pendente'),
+(35, 45, 1300.00, 'Pago'),
+(36, 46, 1450.00, 'Pago'),
+(37, 47, 1150.00, 'Pendente'),
+(38, 48, 1380.00, 'Pago'),
+(39, 49, 1220.00, 'Pago'),
+(40, 50, 1500.00, 'Pendente'),
+(41, 51, 1275.00, 'Pago'),
+(42, 52, 1190.00, 'Pago'),
+(43, 53, 1325.00, 'Pendente'),
+(44, 54, 1400.00, 'Pago'),
+(45, 55, 1350.00, 'Pago'),
+(46, 56, 1250.00, 'Pendente'),
+(47, 57, 1430.00, 'Pago'),
+(48, 58, 1200.00, 'Pago'),
+(49, 59, 1100.00, 'Pendente');
+select*from pagamento;
+
+
