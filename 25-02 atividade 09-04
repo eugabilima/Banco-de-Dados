@@ -1,0 +1,11 @@
+Nr_Encomenda    (Número da Encomenda);
+Dt_Encomenda    (Data da Encomenda);
+Cd_Cliente      (Código do Cliente);
+Nm_Cliente      (Nome do Cliente);
+En_Cliente      (Endereço do Cliente);
+Cd_Produto      (Código do Produto);
+Nm_Produto      (Nome o Produto);
+Uf_Produto      (Unidade de Fornecimento do Produto);
+Vl_Produto      (Valor do Produto);
+Qt_Item         (Quantidade Encomendada por Item);
+Vl_Item         (Valor Unitário Pago pelo Item).
