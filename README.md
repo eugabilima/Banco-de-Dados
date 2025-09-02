@@ -14,9 +14,13 @@ Ele é **open-source**, rápido, seguro e amplamente usado em aplicações web, 
 
 
 🚀 Quando Usar?
+
 🗄️ Sistemas de armazenamento de dados estruturados
+
 🌐 Aplicações web com backend dinâmico
+
 ⚙️ Integração com frameworks (Laravel, Django, Spring, Express)
+
 📈 Projetos que precisam de performance e escalabilidade
 
 ---
