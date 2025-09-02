@@ -12,17 +12,6 @@ Ele é **open-source**, rápido, seguro e amplamente usado em aplicações web, 
 - 🔹 Altamente utilizado em conjunto com **PHP, Python, Java e Node.js**.  
 - 🔹 Compatível com grandes volumes de dados.  
 
-
-🚀 Quando Usar?
-
-🗄️ Sistemas de armazenamento de dados estruturados
-
-🌐 Aplicações web com backend dinâmico
-
-⚙️ Integração com frameworks (Laravel, Django, Spring, Express)
-
-📈 Projetos que precisam de performance e escalabilidade
-
 ---
 
 ## 🛠️ Sintaxe Básica
